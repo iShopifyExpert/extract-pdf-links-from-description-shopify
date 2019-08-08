@@ -1,0 +1,4 @@
+{% assign dlinks = product.description | strip_html | split: 'https://' %}
+{% for dlink in dlinks %}{% assign pdf = dlink | split: ' ' | first %}{% assign pdf = dlink | split: ' ' | first %}{% if pdf contains '.pdf' or pdf contains '.jpg' or pdf contains '.png' %}
+   <div class="btn0"><a href="https://{{pdf}}" download target="_blank"><span class="btn__text">Download PDF {{forloop.index}}</span></a></div>
+{% endif %}{% endfor %}
