@@ -9,6 +9,17 @@
 
 ======================
 
+{% assign dlinks = product.description | strip_html | split: 'http' %}
+{% for dlink in dlinks %}
+{% assign pdf = dlink | split: ' ' | first %}{% if forloop.index0 > 0 %}
+<div class="btn0"><a href="http{{pdf}}" download target="_blank">
+  <span class="btn__text">Download PDF {{forloop.index0}}</span></a>
+</div>
+{% endif %}
+{% endfor %}
 
+====================
 
-{% assign dlinks = product.description | strip_html | split: 'http' %}{% for dlink in dlinks %}{% assign pdf = dlink | split: ' ' | first %}{% assign pdf = dlink | split: ' ' | first %}{% if forloop.index0 > 0 %}<div class="btn0"><a href="http{{pdf}}" download target="_blank"><span class="btn__text">Download PDF {{forloop.index0}}</span></a></div>{% endif %}{% endfor %}
+{% assign dlinks = description | strip_html | split: 'http' %}
+{% assign link0 = dlinks[0] | split: ' ' | first %}{% assign link1 = dlinks[1] | split: ' ' | first %}{% assign link2 = dlinks[2] | split: ' ' | first %}{% assign link3 = dlinks[3] | split: ' ' | first %}
+{{description | remove: '<br><br>' | remove: 'http' | remove: link0 | remove: link1 | remove: link2 | remove: link3 }}
